@@ -111,7 +111,7 @@ body {
 
 .choices-details-wrapper {
   height: 47%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   padding: 20px 0 10px 50px;
 }

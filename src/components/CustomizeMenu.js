@@ -1,5 +1,5 @@
 import React from "react";
-import ChoicesDetails from "./ChoicesDetails";
+import ChoicesDetails from "./microComponents/ChoicesDetails";
 import ChoiceTabs from "./microComponents/ChoiceTabs";
 import Summary from "./microComponents/Summary";
 import TopRow from "./microComponents/TopRow";
