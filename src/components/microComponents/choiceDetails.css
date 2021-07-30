@@ -20,6 +20,7 @@
   line-height: 20px;
   color: #000000;
   padding-bottom: 20px;
+  cursor: pointer;
 }
 
 .addon-option-cost {
@@ -41,10 +42,19 @@
   height: 16px;
   margin-right: 16px;
   transition: ease-in-out;
+  cursor: pointer;
 }
 
 .addon-option:hover {
   font-weight: bold;
   font-size: 17px;
   transition: ease-in;
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 480px) {
+  .addon-option {
+    font-size: 14px;
+  }
 }

@@ -44,3 +44,30 @@
   padding: 0 10px;
   cursor: pointer;
 }
+
+/* MOBILE VIEW */
+
+@media (max-width: 480px) {
+  .summary-wrapper {
+    max-width: 100%;
+    height: 80px;
+  }
+
+  .summary-content {
+    max-width: 100%;
+    height: 80px;
+  }
+
+  .add-ons-total-strip {
+    max-width: 320px;
+    align-items: center;
+  }
+
+  .add-ons-details {
+    max-width: 320px;
+  }
+
+  .add-on-full {
+    width: 80%;
+  }
+}
