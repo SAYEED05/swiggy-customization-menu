@@ -1,18 +1,27 @@
 import React from "react";
+import "./summary.css";
+const Summary = ({ additionalCost, added, shortDetails }) => {
+  const price = shortDetails.map((item) => item.basePrice);
+  const basePrice = parseInt(price);
 
-const Summary = () => {
   return (
     <div className="summary-wrapper">
-      <div className="summary-inner">
-        <div className="summary-content">
-          <div className="add-ons-details">
-            <div className="add-on-full">Multigrain Bread,Lettuce</div>
-            <div className="add-on-short">+3 Add On</div>
+      <div className="summary-content">
+        <div className="add-ons-details">
+          <div className="add-on-full" style={{ display: "flex" }}>
+            {added.slice(0, added.length > 1 ? 2 : 1).map((item, index) => (
+              <div key={index}>{item.name},</div>
+            ))}
           </div>
-          <div className="add-ons-total-strip">
-            <div className="total-amount">Total ₹419</div>
-            <div className="add-item-cta">ADD ITEM</div>
+          <div className="add-on-short">
+            {added.length > 2 && `+${added.length - 2}  Add On`}
           </div>
+        </div>
+        <div className="add-ons-total-strip">
+          <div className="total-amount">
+            Total ₹{basePrice + additionalCost}
+          </div>
+          <div className="add-item-cta">ADD ITEM</div>
         </div>
       </div>
     </div>

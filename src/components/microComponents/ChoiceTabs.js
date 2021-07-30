@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./choiceTabs.css";
 const ChoiceTabs = () => {
   //DATA TO IMITATE RESULT FROM API CALL
   const choices = [
