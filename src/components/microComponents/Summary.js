@@ -4,6 +4,10 @@ const Summary = ({ additionalCost, added, shortDetails }) => {
   const price = shortDetails.map((item) => item.basePrice);
   const basePrice = parseInt(price);
 
+  const addItemHandler = () => {
+    window.alert("added");
+  };
+
   return (
     <div className="summary-wrapper">
       <div className="summary-content">
@@ -17,7 +21,7 @@ const Summary = ({ additionalCost, added, shortDetails }) => {
             {added.length > 2 && `+${added.length - 2}  Add On`}
           </div>
         </div>
-        <div className="add-ons-total-strip">
+        <div className="add-ons-total-strip" onClick={addItemHandler}>
           <div className="total-amount">
             Total ₹{basePrice + additionalCost}
           </div>

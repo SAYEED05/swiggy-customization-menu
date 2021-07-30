@@ -7,31 +7,78 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   const [additionalCost, setAdditionalCost] = useState([]);
   const [checkedList, setCheckedList] = useState([]);
 
-  //HANDLER FOR INPUT SELECTION
+  useEffect(() => {
+    getAdditionalCost(); //CALL GET ADDITIONAL COST EVERYTIME 'ADDED' ARRAY CHANGES
+    // eslint-disable-next-line
+  }, [added]);
+
+  //HANDLER FOR OVERALL INPUT SELECTION LOGICS
   const selectHandler = (cost, name, e, limit) => {
-    let isSelected = e.currentTarget.checked;
+    const isSelected = e.currentTarget.checked;
 
     if (isSelected) {
-      setAdded([...added, { name, cost }]); //IF THE CURRENT INPUT IS SELECTED ADD IT TO THE LIST
-      e.currentTarget.type === "checkbox" && //CHECKING WHEATHER THE CURRENT INPUT IS CHECKBOX
-        setCheckedList([...checkedList, name]);
+      //CHECKING WHEATHER THE CURRENT INPUT IS CHECKBOX
+      if (e.currentTarget.type === "checkbox") {
+        checkBoxInput(name, cost, e);
+        //CHECKING WHEATHER THE CURRENT INPUT IS RADIO
+      } else if (e.currentTarget.type === "radio") {
+        radioInput(name, cost, e);
+      }
     } else {
-      unSelect(e, name); //CALL UNSELECT FUNCTION
+      //IF THE CURRENT INPUT IS NOT SELECTED CALL 'UNSELECT' FUNCTION
+      unSelect(e, name);
     }
   };
 
-  //FUNCTION TO HANDLE UNSELECTED INPUT
-  const unSelect = (e, name) => {
-    //IF THE CURRENT INPUT IS UNSSELECTED  LOOP THROUGH THE 'ADDED LIST'
+  //FUNCTION TO HANDLE CHECKBOX INPUT LOGICS
 
+  const checkBoxInput = (name, cost, e) => {
+    setAdded([
+      ...added,
+      { name, cost, groupName: e.target.attributes[3].nodeValue },
+    ]);
+    setCheckedList([...checkedList, name]);
+  };
+
+  //FUNCTION TO HANDLE RADIO INPUT LOGICS
+
+  const radioInput = (name, cost, e) => {
+    const index = added
+      .map((e) => e.groupName)
+      .indexOf(e.target.attributes[3].nodeValue);
+
+    if (~index) {
+      //IF EXISTS
+
+      /////////////////////////TEMPORARY CODE/////////////////////////////////////
+      const newAdded = [...added];
+      newAdded[index] = {
+        name,
+        cost,
+        groupName: e.target.attributes[3].nodeValue,
+      };
+      //////////////////////////////////////////////////////////////////
+      setAdded(newAdded);
+    } else {
+      //IF DOESN'T EXISTS ADD IT TO 'ADDED' LIST
+      setAdded([
+        ...added,
+        { name, cost, groupName: e.target.attributes[3].nodeValue },
+      ]);
+    }
+  };
+
+  //FUNCTION TO HANDLE UNSELECTED INPUT LOGICS
+  const unSelect = (e, name) => {
+    //LOOPING THROUGH THE 'ADDED LIST' TO CHECK FOR ANY MATCHES
     added.forEach((el) => {
       if (el.name === name) {
         //IF THE NAME MATCHES AN INSTANCE ON THE LIST
-        const filtered = added.filter((item) => item.name !== name); //FILTER IT AND SET THE REMAINING AS THE 'ADDED LIST'
-        setAdded(filtered);
+        const filtered = added.filter((item) => item.name !== name); //FILTER THE CURRENT 'ADDED LIST' BASED ON THE NAME
+        setAdded(filtered); //SET THE REMAINING AS THE NEW 'ADDED LIST'
         if (e.currentTarget.type === "checkbox") {
+          //IF THE CURRENT INPUT IS CHECKBOX.FILTER THE 'CHECKED LIST' TOO
           const filteredCheckedList = checkedList.filter(
-            //IF THE CURRENT INPUT IS CHECKBOX.FILTER THE 'CHECKED LIST' TOO
             (item) => item !== name
           );
           setCheckedList(filteredCheckedList);
@@ -44,12 +91,6 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   const getAdditionalCost = () => {
     setAdditionalCost(added.reduce((acc, item) => acc + Number(item.cost), 0)); //SUMMING ALL THE COST TO FIND THE TOTAL ADDITIONAL COST
   };
-
-  useEffect(() => {
-    getAdditionalCost(); //CALL GET ADDITIONAL COST EEVERYTIME 'ADDED' CHANGES
-
-    // eslint-disable-next-line
-  }, [added]);
 
   console.log(added);
 
@@ -77,7 +118,6 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                           name={addon.name.split(" ").join("")}
                           value={option.name}
                           onChange={(e) => {
-                            console.log(e.target.attributes[3]);
                             selectHandler(
                               option.cost,
                               option.name,

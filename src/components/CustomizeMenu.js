@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ChoicesDetails from "./microComponents/ChoicesDetails";
 import ChoiceTabs from "./microComponents/ChoiceTabs";
 import TopRow from "./microComponents/TopRow";
-import sampleData from "../sampleData";
+import sampleData from "../sampleData"; //SAMPLE DATA TO MIMIC API/BACKEND FETCHED DATA
 
 const CustomizeMenu = () => {
   const [shortDetails, setShortDetails] = useState([]);
