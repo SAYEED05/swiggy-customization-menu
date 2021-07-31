@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Summary from "./Summary";
 import Category from "./Category";
+/* import Result from "./Result"; */
 import "../styles/choiceDetails.css";
 
 const ChoicesDetails = ({ addons, shortDetails }) => {
@@ -13,6 +14,27 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
 
     // eslint-disable-next-line
   }, [added]);
+
+  //CHECK WEATHER ALL THE REQUIRED ADDONS ARE SELECTED
+
+  const reqiredAddonsCheck = () => {
+    let addedGroups = [];
+    let requiredGroups = [];
+    added.map((el) => addedGroups.push(el.groupName)); //MAP OVER 'ADDED' TO GET ALL GROUP NAMES
+    let unique = [...new Set(addedGroups)]; //NEW ARRAY WITH ONY UNIQUE VALUES
+
+    // eslint-disable-next-line
+    addons.map((el) => {
+      //MAP OVER 'ADDONS' TO GET ALL GROUPS WITH REQUIRED
+      if (el.required) {
+        requiredGroups.push(el.name.split(" ").join(""));
+      }
+    });
+
+    let checker = requiredGroups.every((v) => unique.includes(v));
+
+    return addedGroups.length === 0 ? false : checker;
+  };
 
   //HANDLER FOR OVERALL INPUT SELECTION LOGICS
   const selectHandler = (cost, name, e, limit) => {
@@ -106,9 +128,10 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                 {addon.limit > 0 && (
                   <span className="addon-limit">{` Any (${addon.limit})`}</span>
                 )}
-                {!addon.required && (
-                  <span className="addon-required">{`(Optional)`}</span>
-                )}
+
+                <span className="addon-required">
+                  {addon.required ? "(required)" : "(optional)"}
+                </span>
               </div>
               {addon.options.map(
                 //MAPPING THROUGH ADDON OPTIONS (2ND LAYER) TO GET SEPERATE OPTIONs
@@ -159,7 +182,9 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         additionalCost={additionalCost}
         added={added}
         shortDetails={shortDetails}
+        checkerFunction={reqiredAddonsCheck}
       />
+      {/* <Result /> */}
     </>
   );
 };
