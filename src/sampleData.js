@@ -13,10 +13,10 @@ const sampleData = [
         required: false,
         limit: 0,
         options: [
-          { name: "Pepsi (500 ml) Pet Bottle", cost: 48 },
-          { name: "Mirinda (500 ml) Pet Bottle", cost: 52 },
-          { name: "Lipton Ice Tea (250 ml) Pet Bottle", cost: 36 },
-          { name: "Mirinda (330 ml ) Can", cost: 30 },
+          { name: "Pepsi (500 ml) Pet Bottle", cost: 48, isVeg: true },
+          { name: "Mirinda (500 ml) Pet Bottle", cost: 52, isVeg: true },
+          { name: "Lipton Ice Tea (250 ml) Pet Bottle", cost: 36, isVeg: true },
+          { name: "Mirinda (330 ml ) Can", cost: 30, isVeg: true },
         ],
       },
       {
@@ -25,9 +25,9 @@ const sampleData = [
         required: true,
         limit: 0,
         options: [
-          { name: "Multigrain Bread", cost: 0 },
-          { name: "Multigrain Honey Oats Bread", cost: 0 },
-          { name: "Italian Bread", cost: 0 },
+          { name: "Multigrain Bread", cost: 0, isVeg: true },
+          { name: "Multigrain Honey Oats Bread", cost: 0, isVeg: true },
+          { name: "Italian Bread", cost: 0, isVeg: true },
         ],
       },
       {
@@ -36,10 +36,10 @@ const sampleData = [
         required: true,
         limit: 0,
         options: [
-          { name: "Lettuce", cost: 0 },
-          { name: "Tomato", cost: 0 },
-          { name: "Cucumber", cost: 0 },
-          { name: "Pickle", cost: 0 },
+          { name: "Lettuce", cost: 0, isVeg: true },
+          { name: "Tomato", cost: 0, isVeg: true },
+          { name: "Cucumber", cost: 0, isVeg: true },
+          { name: "Pickle", cost: 0, isVeg: true },
         ],
       },
       {
@@ -48,11 +48,11 @@ const sampleData = [
         required: false,
         limit: 3,
         options: [
-          { name: "Mayonnaise", cost: 0 },
-          { name: "Chipotle South West", cost: 0 },
-          { name: "Red Chilli", cost: 0 },
-          { name: "Marinara", cost: 0 },
-          { name: "Sweet Onion", cost: 0 },
+          { name: "Mayonnaise", cost: 0, isVeg: false },
+          { name: "Chipotle South West", cost: 0, isVeg: true },
+          { name: "Red Chilli", cost: 0, isVeg: true },
+          { name: "Marinara", cost: 0, isVeg: true },
+          { name: "Sweet Onion", cost: 0, isVeg: true },
         ],
       },
       {
@@ -61,9 +61,9 @@ const sampleData = [
         required: true,
         limit: 0,
         options: [
-          { name: " Double Dark Chunk Chocolate Cookie", cost: 0 },
-          { name: "Oatmeal Raisin Cookie", cost: 0 },
-          { name: "Dark Chunk Chocolate Cookie", cost: 0 },
+          { name: " Double Dark Chunk Chocolate Cookie", cost: 0, isVeg: true },
+          { name: "Oatmeal Raisin Cookie", cost: 0, isVeg: true },
+          { name: "Dark Chunk Chocolate Cookie", cost: 0, isVeg: true },
         ],
       },
     ],

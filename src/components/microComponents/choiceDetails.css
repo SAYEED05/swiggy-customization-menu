@@ -51,10 +51,20 @@
   transition: ease-in;
 }
 
+.food-category {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
 /* MOBILE VIEW */
 
 @media (max-width: 480px) {
   .addon-option {
     font-size: 14px;
+  }
+  .addon-option:hover {
+    font-weight: normal;
+    font-size: 16px;
   }
 }

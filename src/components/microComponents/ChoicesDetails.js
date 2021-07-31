@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Summary from "./Summary";
 import "./choiceDetails.css";
+import vegIcon from "../../assets/veg-icon.png";
+import nonVegIcon from "../../assets/non-veg-icon.png";
 
 const ChoicesDetails = ({ addons, shortDetails }) => {
   const [added, setAdded] = useState([]);
   const [additionalCost, setAdditionalCost] = useState([]);
-  const [checkedList, setCheckedList] = useState([]);
+  /* const [checkedList, setCheckedList] = useState([]); */
 
   useEffect(() => {
     getAdditionalCost(); //CALL GET ADDITIONAL COST FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
@@ -14,13 +16,12 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
 
   //HANDLER FOR OVERALL INPUT SELECTION LOGICS
   const selectHandler = (cost, name, e, limit) => {
-    console.log(limit);
     const isSelected = e.currentTarget.checked;
 
     if (isSelected) {
       //CHECKING WHEATHER THE CURRENT INPUT IS CHECKBOX
       if (e.currentTarget.type === "checkbox") {
-        checkBoxInput(name, cost, e);
+        checkBoxInput(name, cost, e, limit);
         //CHECKING WHEATHER THE CURRENT INPUT IS RADIO
       } else if (e.currentTarget.type === "radio") {
         radioInput(name, cost, e);
@@ -33,12 +34,20 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
 
   //FUNCTION TO HANDLE CHECKBOX INPUT LOGICS
 
-  const checkBoxInput = (name, cost, e) => {
-    setAdded([
-      ...added,
-      { name, cost, groupName: e.target.attributes[3].nodeValue },
-    ]);
-    setCheckedList([...checkedList, name]);
+  const checkBoxInput = (name, cost, e, limit) => {
+    let arr = [];
+    added.map((el) => arr.push(el.groupName));
+    const arrLength = arr.filter(
+      (v) => v === e.target.attributes[3].nodeValue
+    ).length;
+
+    if (arrLength < limit || limit === 0) {
+      setAdded([
+        ...added,
+        { name, cost, groupName: e.target.attributes[3].nodeValue },
+      ]);
+      /* setCheckedList([...checkedList, name]); */
+    }
   };
 
   //FUNCTION TO HANDLE RADIO INPUT LOGICS
@@ -51,7 +60,7 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     if (~index) {
       //IF EXISTS
 
-      /* MUTATING AN EXISTING ARRAY WILL NOT RERENDER THE DOM AND ALOS NOT A GOOD PRACTICE.SO,
+      /* MUTATING AN EXISTING ARRAY WILL NOT RERENDER THE DOM AND ALSO NOT A GOOD PRACTICE.SO,
       CREATE NEW ARRAY SINCE THE ORIGINAL AND COPIED ARRAYS WILL CONTAIN IDENTICAL INDICES */
       const newAdded = [...added];
       newAdded[index] = {
@@ -78,13 +87,13 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         //IF THE NAME MATCHES AN INSTANCE ON THE LIST
         const filtered = added.filter((item) => item.name !== name); //FILTER THE CURRENT 'ADDED LIST' BASED ON THE NAME
         setAdded(filtered); //SET THE REMAINING AS THE NEW 'ADDED LIST'
-        if (e.currentTarget.type === "checkbox") {
-          //IF THE CURRENT INPUT IS CHECKBOX.FILTER THE 'CHECKED LIST' TOO
-          const filteredCheckedList = checkedList.filter(
+
+        /*         if (e.currentTarget.type === "checkbox") {
+           const filteredCheckedList = checkedList.filter(
             (item) => item !== name
           );
           setCheckedList(filteredCheckedList);
-        }
+        } */
       }
     });
   };
@@ -111,6 +120,21 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                     key={`${optionIndex}${option.name}`}
                     className="addon-option-wrapper"
                   >
+                    <div className="category">
+                      {option.isVeg ? (
+                        <img
+                          className="food-category veg"
+                          src={vegIcon}
+                          alt="veg-icon"
+                        />
+                      ) : (
+                        <img
+                          className="food-category non-veg"
+                          src={nonVegIcon}
+                          alt="non veg icon"
+                        />
+                      )}
+                    </div>
                     <div className="addon-option">
                       <label htmlFor={addon.name.split(" ").join("")}>
                         <input
