@@ -37,25 +37,17 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     //GET NUMBER OF ITEMS IN 'ADDED' ARRAY WITH SAME GROUP NAME AND FIND IT'S LENGTH
     let arr = [];
     added.map((el) => arr.push(el.groupName));
-    const arrLength = arr.filter(
-      (v) => v === e.target.attributes[3].nodeValue
-    ).length;
-
+    const arrLength = arr.filter((v) => v === e.target.name).length;
     //CHECK WEATHER THE GROUP HAS ANY LIMIT (IF 0 THEN NO LIMIT)
     if (arrLength < limit || limit === 0) {
-      setAdded([
-        ...added,
-        { name, cost, groupName: e.target.attributes[3].nodeValue },
-      ]);
+      setAdded([...added, { name, cost, groupName: e.target.name }]);
     }
   };
 
   //FUNCTION TO HANDLE RADIO BUTTON INPUT LOGICS
 
   const radioInput = (name, cost, e) => {
-    const index = added
-      .map((e) => e.groupName)
-      .indexOf(e.target.attributes[3].nodeValue);
+    const index = added.map((e) => e.groupName).indexOf(e.target.name);
 
     if (~index) {
       //IF EXISTS
@@ -66,16 +58,13 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
       newAdded[index] = {
         name,
         cost,
-        groupName: e.target.attributes[3].nodeValue,
+        groupName: e.target.name,
       };
 
       setAdded(newAdded);
     } else {
       //IF DOESN'T EXISTS ADD IT TO 'ADDED' LIST
-      setAdded([
-        ...added,
-        { name, cost, groupName: e.target.attributes[3].nodeValue },
-      ]);
+      setAdded([...added, { name, cost, groupName: e.target.name }]);
     }
   };
 
