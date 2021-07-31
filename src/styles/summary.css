@@ -45,6 +45,18 @@
   cursor: pointer;
 }
 
+.add-ons-total-strip:hover {
+  box-shadow: 0 4px 14px #d4d5d9;
+}
+
+.addon-required {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  padding-left: 5px;
+  color: #686b78;
+}
+
 /* MOBILE VIEW */
 
 @media (max-width: 480px) {

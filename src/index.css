@@ -13,6 +13,14 @@
   scroll-behavior: smooth;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 /* SETTING GLOBAL FONT */
 html,
 body {
@@ -23,7 +31,7 @@ body {
 
 @keyframes introAnim {
   from {
-    top: 70%;
+    top: 140%;
     opacity: 0;
   }
   to {

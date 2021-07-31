@@ -44,8 +44,9 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
       setAdded([...added, { name, cost, groupName: e.target.name }]);
       setShowError(false);
     } else {
-      e.target.checked = false;
-      setShowError(true);
+      e.target.checked = false; //SETTING CHECKED TO FALSE IF THE CHECKBOX GROUP IS ALREADY MET THE  SPECIFIED LIMIT
+      setShowError(true); //TO SHOW THE ERROR MESSAGE
+
       setTimeout(() => {
         setShowError(false);
       }, 2000);
@@ -105,6 +106,9 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                 {addon.limit > 0 && (
                   <span className="addon-limit">{` Any (${addon.limit})`}</span>
                 )}
+                {!addon.required && (
+                  <span className="addon-required">{`(Optional)`}</span>
+                )}
               </div>
               {addon.options.map(
                 //MAPPING THROUGH ADDON OPTIONS (2ND LAYER) TO GET SEPERATE OPTIONs
@@ -115,7 +119,7 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                   >
                     <Category option={option.isVeg} />
                     <div className="addon-option">
-                      <label htmlFor={addon.name.split(" ").join("")}>
+                      <label>
                         <input
                           type={addon.multipleSelect ? `checkbox` : "radio"}
                           className="addon-input"

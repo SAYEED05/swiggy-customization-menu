@@ -58,7 +58,7 @@ const sampleData = [
       {
         name: "Choice of Free Cookie",
         multipleSelect: false,
-        required: true,
+        required: false,
         limit: 0,
         options: [
           { name: " Double Dark Chunk Chocolate Cookie", cost: 0, isVeg: true },
