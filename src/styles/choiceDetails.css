@@ -57,6 +57,20 @@
   margin-right: 10px;
 }
 
+.show-error {
+  height: 50px;
+  width: 100%;
+  background: #fa4a5b;
+  padding: 0 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  z-index: 10;
+}
+
 /* MOBILE VIEW */
 
 @media (max-width: 480px) {
@@ -66,5 +80,8 @@
   .addon-option:hover {
     font-weight: normal;
     font-size: 16px;
+  }
+  .show-error {
+    bottom: 80px;
   }
 }

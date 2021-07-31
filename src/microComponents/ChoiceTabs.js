@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import "../../styles/choiceTabs.css";
+import "../styles/choiceTabs.css";
 const ChoiceTabs = ({ addons }) => {
   const choices = [];
   const [selectedChoice, setSelectedChoice] = useState("");
-
-  /*   const choices = [
-    "Choice of Beverages",
-    "Choice of Bread",
-    "Choice of Vegetables",
-    "Choice of Sauce",
-    "Choice of Free Cookie",
-  ]; */
 
   addons.map((el) => choices.push(el.name));
 

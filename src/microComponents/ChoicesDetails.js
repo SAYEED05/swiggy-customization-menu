@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Summary from "./Summary";
 import Category from "./Category";
-import "../../styles/choiceDetails.css";
+import "../styles/choiceDetails.css";
 
 const ChoicesDetails = ({ addons, shortDetails }) => {
   const [added, setAdded] = useState([]);
   const [additionalCost, setAdditionalCost] = useState([]);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     getAdditionalCost(); //CALL 'GET ADDITIONAL COST' FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
@@ -41,6 +42,13 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     //CHECK WEATHER THE GROUP HAS ANY LIMIT (IF 0 THEN NO LIMIT)
     if (arrLength < limit || limit === 0) {
       setAdded([...added, { name, cost, groupName: e.target.name }]);
+      setShowError(false);
+    } else {
+      e.target.checked = false;
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 2000);
     }
   };
 
@@ -136,6 +144,9 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
           )
         )}
       </div>
+      {showError && (
+        <div className="show-error">Maximum Choice of selection reached</div>
+      )}
       <Summary
         additionalCost={additionalCost}
         added={added}

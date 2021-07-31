@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/summary.css";
+import "../styles/summary.css";
 const Summary = ({ additionalCost, added, shortDetails }) => {
   const price = shortDetails.map((item) => item.basePrice);
   const basePrice = parseInt(price);

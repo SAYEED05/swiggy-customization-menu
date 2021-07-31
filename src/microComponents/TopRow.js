@@ -1,6 +1,6 @@
 import React from "react";
-import closeIcon from "../../assets/close-icon.svg";
-import "../../styles/topRow.css";
+import closeIcon from "../assets/close-icon.svg";
+import "../styles/topRow.css";
 const TopRow = ({ shortDetails }) => {
   return (
     <>

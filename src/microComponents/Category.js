@@ -1,6 +1,6 @@
 import React from "react";
-import vegIcon from "../../assets/veg-icon.png";
-import nonVegIcon from "../../assets/non-veg-icon.png";
+import vegIcon from "../assets/veg-icon.png";
+import nonVegIcon from "../assets/non-veg-icon.png";
 const Category = ({ option }) => {
   return (
     <div className="category">
