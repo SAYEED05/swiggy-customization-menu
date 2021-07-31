@@ -145,7 +145,11 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         )}
       </div>
       {showError && (
-        <div className="show-error">Maximum Choice of selection reached</div>
+        <div className="show-error">
+          <div className="error-content">
+            Maximum Choice of selections reached
+          </div>
+        </div>
       )}
       <Summary
         additionalCost={additionalCost}
