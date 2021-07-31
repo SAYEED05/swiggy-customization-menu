@@ -8,6 +8,18 @@ const sampleData = [
     basePrice: 200,
     addOns: [
       {
+        name: "Choice of Beverages",
+        multipleSelect: true,
+        required: false,
+        limit: 0,
+        options: [
+          { name: "Pepsi (500 ml) Pet Bottle", cost: 48 },
+          { name: "Mirinda (500 ml) Pet Bottle", cost: 52 },
+          { name: "Lipton Ice Tea (250 ml) Pet Bottle", cost: 36 },
+          { name: "Mirinda (330 ml ) Can", cost: 30 },
+        ],
+      },
+      {
         name: "Choice of Bread",
         multipleSelect: false,
         required: true,
@@ -52,18 +64,6 @@ const sampleData = [
           { name: " Double Dark Chunk Chocolate Cookie", cost: 0 },
           { name: "Oatmeal Raisin Cookie", cost: 0 },
           { name: "Dark Chunk Chocolate Cookie", cost: 0 },
-        ],
-      },
-      {
-        name: "Choice of Beverages",
-        multipleSelect: true,
-        required: false,
-        limit: 0,
-        options: [
-          { name: "Pepsi (500 ml) Pet Bottle", cost: 48 },
-          { name: "Mirinda (500 ml) Pet Bottle", cost: 52 },
-          { name: "Lipton Ice Tea (250 ml) Pet Bottle", cost: 36 },
-          { name: "Mirinda (330 ml ) Can", cost: 30 },
         ],
       },
     ],

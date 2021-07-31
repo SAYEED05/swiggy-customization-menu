@@ -8,12 +8,13 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   const [checkedList, setCheckedList] = useState([]);
 
   useEffect(() => {
-    getAdditionalCost(); //CALL GET ADDITIONAL COST EVERYTIME 'ADDED' ARRAY CHANGES
+    getAdditionalCost(); //CALL GET ADDITIONAL COST FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
     // eslint-disable-next-line
   }, [added]);
 
   //HANDLER FOR OVERALL INPUT SELECTION LOGICS
   const selectHandler = (cost, name, e, limit) => {
+    console.log(limit);
     const isSelected = e.currentTarget.checked;
 
     if (isSelected) {
@@ -50,14 +51,15 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     if (~index) {
       //IF EXISTS
 
-      /////////////////////////TEMPORARY CODE/////////////////////////////////////
+      /* MUTATING AN EXISTING ARRAY WILL NOT RERENDER THE DOM AND ALOS NOT A GOOD PRACTICE.SO,
+      CREATE NEW ARRAY SINCE THE ORIGINAL AND COPIED ARRAYS WILL CONTAIN IDENTICAL INDICES */
       const newAdded = [...added];
       newAdded[index] = {
         name,
         cost,
         groupName: e.target.attributes[3].nodeValue,
       };
-      //////////////////////////////////////////////////////////////////
+
       setAdded(newAdded);
     } else {
       //IF DOESN'T EXISTS ADD IT TO 'ADDED' LIST
