@@ -10,10 +10,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 /* SETTING GLOBAL FONT */
-
 html,
 body {
   font-family: "Proxima Nova Font", sans-serif;

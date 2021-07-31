@@ -28,7 +28,7 @@ const CustomizeMenu = () => {
     <div className="customize-menu-wrapper">
       <div className="customize-menu-inner">
         <TopRow shortDetails={shortDetails} />
-        <ChoiceTabs />
+        <ChoiceTabs addons={addons} />
         <ChoicesDetails shortDetails={shortDetails} addons={addons} />
       </div>
     </div>

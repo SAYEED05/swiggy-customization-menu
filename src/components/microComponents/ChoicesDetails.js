@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Summary from "./Summary";
-import "./choiceDetails.css";
-import vegIcon from "../../assets/veg-icon.png";
-import nonVegIcon from "../../assets/non-veg-icon.png";
+import Category from "./Category";
+import "../../styles/choiceDetails.css";
 
 const ChoicesDetails = ({ addons, shortDetails }) => {
   const [added, setAdded] = useState([]);
   const [additionalCost, setAdditionalCost] = useState([]);
-  /* const [checkedList, setCheckedList] = useState([]); */
 
   useEffect(() => {
-    getAdditionalCost(); //CALL GET ADDITIONAL COST FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
+    getAdditionalCost(); //CALL 'GET ADDITIONAL COST' FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
+
     // eslint-disable-next-line
   }, [added]);
 
@@ -35,22 +34,23 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   //FUNCTION TO HANDLE CHECKBOX INPUT LOGICS
 
   const checkBoxInput = (name, cost, e, limit) => {
+    //GET NUMBER OF ITEMS IN 'ADDED' ARRAY WITH SAME GROUP NAME AND FIND IT'S LENGTH
     let arr = [];
     added.map((el) => arr.push(el.groupName));
     const arrLength = arr.filter(
       (v) => v === e.target.attributes[3].nodeValue
     ).length;
 
+    //CHECK WEATHER THE GROUP HAS ANY LIMIT (IF 0 THEN NO LIMIT)
     if (arrLength < limit || limit === 0) {
       setAdded([
         ...added,
         { name, cost, groupName: e.target.attributes[3].nodeValue },
       ]);
-      /* setCheckedList([...checkedList, name]); */
     }
   };
 
-  //FUNCTION TO HANDLE RADIO INPUT LOGICS
+  //FUNCTION TO HANDLE RADIO BUTTON INPUT LOGICS
 
   const radioInput = (name, cost, e) => {
     const index = added
@@ -87,23 +87,14 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         //IF THE NAME MATCHES AN INSTANCE ON THE LIST
         const filtered = added.filter((item) => item.name !== name); //FILTER THE CURRENT 'ADDED LIST' BASED ON THE NAME
         setAdded(filtered); //SET THE REMAINING AS THE NEW 'ADDED LIST'
-
-        /*         if (e.currentTarget.type === "checkbox") {
-           const filteredCheckedList = checkedList.filter(
-            (item) => item !== name
-          );
-          setCheckedList(filteredCheckedList);
-        } */
       }
     });
   };
 
-  //FUNCTION TO GET ADDITIONAL COST
+  //FUNCTION TO GET TOTAL ADDITIONAL COST
   const getAdditionalCost = () => {
     setAdditionalCost(added.reduce((acc, item) => acc + Number(item.cost), 0)); //SUMMING ALL THE COST TO FIND THE TOTAL ADDITIONAL COST
   };
-
-  console.log(added);
 
   return (
     <>
@@ -111,8 +102,13 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         {addons.map(
           //MAPPING THROUGH ADD-ONS (1ST LAYER) TO GET NAME AND SEPERATE ADD-ONs
           (addon, index) => (
-            <div key={index}>
-              <div className="addon-title">{addon.name}</div>
+            <div key={index} id={addon.name.split(" ").join("")}>
+              <div className="addon-title">
+                {addon.name}
+                {addon.limit > 0 && (
+                  <span className="addon-limit">{` Any (${addon.limit})`}</span>
+                )}
+              </div>
               {addon.options.map(
                 //MAPPING THROUGH ADDON OPTIONS (2ND LAYER) TO GET SEPERATE OPTIONs
                 (option, optionIndex) => (
@@ -120,26 +116,11 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                     key={`${optionIndex}${option.name}`}
                     className="addon-option-wrapper"
                   >
-                    <div className="category">
-                      {option.isVeg ? (
-                        <img
-                          className="food-category veg"
-                          src={vegIcon}
-                          alt="veg-icon"
-                        />
-                      ) : (
-                        <img
-                          className="food-category non-veg"
-                          src={nonVegIcon}
-                          alt="non veg icon"
-                        />
-                      )}
-                    </div>
+                    <Category option={option.isVeg} />
                     <div className="addon-option">
                       <label htmlFor={addon.name.split(" ").join("")}>
                         <input
                           type={addon.multipleSelect ? `checkbox` : "radio"}
-                          id={option.name}
                           className="addon-input"
                           name={addon.name.split(" ").join("")}
                           value={option.name}
