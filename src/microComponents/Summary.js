@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "../styles/summary.css";
 import Preview from "./Preview";
 const Summary = ({ additionalCost, added, shortDetails, checkerFunction }) => {
-  const price = shortDetails.map((item) => item.basePrice);
-  const basePrice = parseInt(price);
   const [canAdd, setCanAdd] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
+
+  //TO GET PRICE FROM SHORT DETAILS
+  const price = shortDetails.map((item) => item.basePrice);
+  const basePrice = parseInt(price);
 
   const addItemHandler = () => {
     if (canAdd) {
@@ -21,7 +23,7 @@ const Summary = ({ additionalCost, added, shortDetails, checkerFunction }) => {
   };
 
   useEffect(() => {
-    setCanAdd(checkerFunction());
+    setCanAdd(checkerFunction()); //FUNCTION TO CHECK WEATHER ALL THE REQUIRED FIELDS ARE SELECTED
 
     // eslint-disable-next-line
   }, [added]);

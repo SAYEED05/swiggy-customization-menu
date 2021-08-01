@@ -4,8 +4,9 @@ const ChoiceTabs = ({ addons }) => {
   const choices = [];
   const [selectedChoice, setSelectedChoice] = useState("");
 
-  addons.map((el) => choices.push(el.name));
+  addons.map((el) => choices.push(el.name)); //TO GET ALL THE CHOICES FROM ADDONS AND STORE IT TO 'CHOICES' ARRAY
 
+  //TO CHANGE THE CURRENT SELECTED TAB IN CHOICE
   const selectHandler = (choice) => {
     setSelectedChoice(choice);
   };

@@ -1,15 +1,10 @@
 import React from "react";
 import "../styles/preview.css";
-/* import burgerFloatImg from "../assets/burger-float.png"; */
 
 const Preview = ({ additionalCost, added, basePrice, setShowSummary }) => {
   return (
     <div className="result-wrapper">
       <div className="result-heading">PREVIEW</div>
-
-      {/* <div className="result-image">
-        <img src={burgerFloatImg} alt="burger floating" />
-      </div> */}
       <div className="result-sub-heading">Your Add-Ons</div>
       <div className="selected-details-wrapper">
         <div className="result-initial-price">

@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.input-label {
+  cursor: pointer;
+}
+
 .addon-option:hover {
   font-weight: bold;
   font-size: 17px;
@@ -84,6 +88,8 @@
     bottom: 80px;
   }
   .addon-option-cost {
+    line-height: 20px;
+    font-size: 14px;
     padding-left: 8px;
   }
   .addon-option-wrapper input[type="radio"],
