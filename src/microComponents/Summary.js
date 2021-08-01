@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/summary.css";
-import Result from "./Result";
+import Preview from "./Preview";
 const Summary = ({ additionalCost, added, shortDetails, checkerFunction }) => {
   const price = shortDetails.map((item) => item.basePrice);
   const basePrice = parseInt(price);
@@ -58,7 +58,7 @@ const Summary = ({ additionalCost, added, shortDetails, checkerFunction }) => {
         </div>
       </div>
       {showSummary && (
-        <Result
+        <Preview
           additionalCost={additionalCost}
           added={added}
           basePrice={basePrice}

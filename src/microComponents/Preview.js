@@ -1,16 +1,16 @@
 import React from "react";
-import "../styles/result.css";
-import burgerFloatImg from "../assets/burger-float.png";
-/* import foodAnimation from "../assets/food-animation.mp4"; */
-const Result = ({ additionalCost, added, basePrice, setShowSummary }) => {
+import "../styles/preview.css";
+/* import burgerFloatImg from "../assets/burger-float.png"; */
+
+const Preview = ({ additionalCost, added, basePrice, setShowSummary }) => {
   return (
     <div className="result-wrapper">
-      <div className="result-heading">ADDED SUCCESSFULLY</div>
+      <div className="result-heading">PREVIEW</div>
 
-      <div className="result-image">
+      {/* <div className="result-image">
         <img src={burgerFloatImg} alt="burger floating" />
-      </div>
-      <div className="result-sub-heading">Your Selections</div>
+      </div> */}
+      <div className="result-sub-heading">Your Add-Ons</div>
       <div className="selected-details-wrapper">
         <div className="result-initial-price">
           <div>Base Price</div>
@@ -38,4 +38,4 @@ const Result = ({ additionalCost, added, basePrice, setShowSummary }) => {
   );
 };
 
-export default Result;
+export default Preview;

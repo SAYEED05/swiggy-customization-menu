@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 26px;
-  height: 250px;
+  height: 380px;
   overflow-y: scroll;
 }
 
@@ -50,6 +50,12 @@
   white-space: nowrap;
   /* overflow: hidden;
   text-overflow: ellipsis; */
+}
+
+.result-total {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
 }
 
 .result-addon-price,
@@ -78,6 +84,6 @@ button {
 
 @media (max-width: 480px) {
   .selected-details-wrapper {
-    height: 320px;
+    height: 480px;
   }
 }
