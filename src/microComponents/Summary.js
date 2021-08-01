@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../styles/summary.css";
+import Result from "./Result";
 const Summary = ({ additionalCost, added, shortDetails, checkerFunction }) => {
   const price = shortDetails.map((item) => item.basePrice);
   const basePrice = parseInt(price);
   const [canAdd, setCanAdd] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
 
   const addItemHandler = () => {
     if (canAdd) {
       setShowError(false);
-      window.alert("added");
+      setShowSummary(true);
     } else {
       setShowError(true);
       setTimeout(() => {
@@ -55,6 +57,14 @@ const Summary = ({ additionalCost, added, shortDetails, checkerFunction }) => {
           </div>
         </div>
       </div>
+      {showSummary && (
+        <Result
+          additionalCost={additionalCost}
+          added={added}
+          basePrice={basePrice}
+          setShowSummary={setShowSummary}
+        />
+      )}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import closeIcon from "../assets/close-icon.svg";
+/* import closeIcon from "../assets/close-icon.svg"; */
 import "../styles/topRow.css";
 import Category from "./Category";
 const TopRow = ({ shortDetails }) => {
@@ -12,11 +12,11 @@ const TopRow = ({ shortDetails }) => {
             Customize "{item.name}"
             <div className="initial-price">₹{item.basePrice}</div>
           </div>
-          <div className="action-close">
+          {/* <div className="action-close">
             <button className="close-button">
               {<img className="close-icon" src={closeIcon} alt="" />}
             </button>
-          </div>
+          </div> */}
         </div>
       ))}
     </>
