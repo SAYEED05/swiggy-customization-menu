@@ -5,7 +5,7 @@ import "../styles/choiceDetails.css";
 
 const ChoicesDetails = ({ addons, shortDetails }) => {
   const [added, setAdded] = useState([]);
-  const [additionalCost, setAdditionalCost] = useState([]);
+  const [additionalCost, setAdditionalCost] = useState(0);
   const [showError, setShowError] = useState(false);
 
   //HANDLER FOR OVERALL INPUT SELECTION LOGICS
@@ -13,11 +13,11 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     const isSelected = e.currentTarget.checked;
 
     if (isSelected) {
-      //CHECKING WHEATHER THE CURRENT INPUT IS CHECKBOX
+      //CHECKING IF THE CURRENT INPUT IS CHECKBOX
       if (e.currentTarget.type === "checkbox") {
         checkBoxInput(name, cost, e, limit);
-        //CHECKING WHEATHER THE CURRENT INPUT IS RADIO
-      } else if (e.currentTarget.type === "radio") {
+      } else {
+        //IF NOT CHECKBOX THEN IT IS RADIO
         radioInput(name, cost, e);
       }
     } else {
@@ -33,14 +33,15 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     let arr = [];
     added.map((el) => arr.push(el.groupName));
     const arrLength = arr.filter((v) => v === e.target.name).length;
-    //CHECK WEATHER THE GROUP HAS ANY LIMIT (IF 0 THEN NO LIMIT)
+    //CHECK WEATHER THE GROUP HAS ANY LIMIT (NUMBER OF ADDONS THAT CAN BE ADDED) IF 0 THEN NO LIMIT
     if (arrLength < limit || limit === 0) {
       setAdded([...added, { name, cost, groupName: e.target.name }]);
       setShowError(false);
     } else {
-      e.target.checked = false; //SETTING CHECKED TO FALSE IF THE CHECKBOX GROUP IS ALREADY MET THE  SPECIFIED LIMIT
+      e.target.checked = false; //SETTING CHECKED INPUT TO UNCHECKED IF THE CHECKBOX GROUP HAS ALREADY MET THE  SPECIFIED LIMIT
       setShowError(true); //TO SHOW THE ERROR MESSAGE
 
+      //TO HIDE THE ERROR MESSAGE AFTER 2 SECONDS
       setTimeout(() => {
         setShowError(false);
       }, 2000);
@@ -50,23 +51,23 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   //FUNCTION TO HANDLE RADIO BUTTON INPUT LOGICS
 
   const radioInput = (name, cost, e) => {
-    const index = added.map((e) => e.groupName).indexOf(e.target.name);
+    const index = added.map((e) => e.groupName).indexOf(e.target.name); //FIND THE INDEX OF CURRENT INPUT'S GROUP NAME IF IT EXISTS IN ADDED
 
+    //IF EXISTS
     if (~index) {
-      //IF EXISTS
-
       /* MUTATING AN EXISTING ARRAY WILL NOT RERENDER THE DOM AND ALSO NOT A GOOD PRACTICE.SO,
       CREATE NEW ARRAY SINCE THE ORIGINAL AND COPIED ARRAYS WILL CONTAIN IDENTICAL INDICES */
       const newAdded = [...added];
+      //REPLACE THAT VALUE WITH CURRENT INPUT VALUE
       newAdded[index] = {
         name,
         cost,
         groupName: e.target.name,
       };
 
-      setAdded(newAdded);
+      setAdded(newAdded); //UPDATE THE 'ADDED' ARRAY
     } else {
-      //IF DOESN'T EXISTS ADD IT TO 'ADDED' LIST
+      //IF DOESN'T EXISTS ADD IT TO 'ADDED' ARRAY
       setAdded([...added, { name, cost, groupName: e.target.name }]);
     }
   };
