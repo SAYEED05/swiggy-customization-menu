@@ -20,6 +20,11 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
+
+  /* TO PREVENT BLUE HIGHLIGHT TO APPEAR WHEN TAP ON A DIV */
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -o-tap-highlight-color: transparent;
 }
 
 /* SETTING GLOBAL FONT */
