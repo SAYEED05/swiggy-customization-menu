@@ -9,12 +9,6 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   const [additionalCost, setAdditionalCost] = useState([]);
   const [showError, setShowError] = useState(false);
 
-  useEffect(() => {
-    getAdditionalCost(); //CALL 'GET ADDITIONAL COST' FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
-
-    // eslint-disable-next-line
-  }, [added]);
-
   //HANDLER FOR OVERALL INPUT SELECTION LOGICS
   const selectHandler = (cost, name, e, limit) => {
     const isSelected = e.currentTarget.checked;
@@ -78,7 +72,7 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     }
   };
 
-  //FUNCTION TO HANDLE UNSELECTED INPUT LOGICS
+  //FUNCTION TO HANDLE INPUT WHEN UNSELECTED
   const unSelect = (e, name) => {
     //LOOPING THROUGH THE 'ADDED LIST' TO CHECK FOR ANY MATCHES
     added.forEach((el) => {
@@ -115,6 +109,12 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
   const getAdditionalCost = () => {
     setAdditionalCost(added.reduce((acc, item) => acc + Number(item.cost), 0)); //SUMMING ALL THE COST TO FIND THE TOTAL ADDITIONAL COST
   };
+
+  useEffect(() => {
+    getAdditionalCost(); //CALL 'GET ADDITIONAL COST' FUNCTION EVERYTIME 'ADDED' ARRAY CHANGES
+
+    // eslint-disable-next-line
+  }, [added]);
 
   return (
     <>

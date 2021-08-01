@@ -3,6 +3,7 @@ const sampleData = [
     id: 1,
     name: "BFF Veg Sub Combo (15cm , 6 inch)",
     description: "Buy any two 6' veg sub & get 2 cookie free",
+    isVeg: true,
     image:
       "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/ieqpaerjsv5zwbm2uxks",
     basePrice: 200,

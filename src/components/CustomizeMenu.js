@@ -16,6 +16,7 @@ const CustomizeMenu = () => {
           id: data.id,
           name: data.name,
           image: data.image,
+          isVeg: data.isVeg,
           description: data.description,
           basePrice: data.basePrice,
         },
