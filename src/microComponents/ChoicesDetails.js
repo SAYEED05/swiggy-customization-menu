@@ -15,27 +15,6 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
     // eslint-disable-next-line
   }, [added]);
 
-  //CHECK WEATHER ALL THE REQUIRED ADDONS ARE SELECTED
-
-  const reqiredAddonsCheck = () => {
-    let addedGroups = [];
-    let requiredGroups = [];
-    added.map((el) => addedGroups.push(el.groupName)); //MAP OVER 'ADDED' TO GET ALL GROUP NAMES
-    let unique = [...new Set(addedGroups)]; //NEW ARRAY WITH ONY UNIQUE VALUES
-
-    // eslint-disable-next-line
-    addons.map((el) => {
-      //MAP OVER 'ADDONS' TO GET ALL GROUPS WITH REQUIRED
-      if (el.required) {
-        requiredGroups.push(el.name.split(" ").join(""));
-      }
-    });
-
-    let checker = requiredGroups.every((v) => unique.includes(v));
-
-    return addedGroups.length === 0 ? false : checker;
-  };
-
   //HANDLER FOR OVERALL INPUT SELECTION LOGICS
   const selectHandler = (cost, name, e, limit) => {
     const isSelected = e.currentTarget.checked;
@@ -109,6 +88,27 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         setAdded(filtered); //SET THE REMAINING AS THE NEW 'ADDED LIST'
       }
     });
+  };
+
+  //CHECK WEATHER ALL THE MANDATORY ADDONS ARE SELECTED
+
+  const reqiredAddonsCheck = () => {
+    let addedGroups = [];
+    let requiredGroups = [];
+    added.map((el) => addedGroups.push(el.groupName)); //MAP OVER 'ADDED' TO GET ALL GROUP NAMES
+    let unique = [...new Set(addedGroups)]; //ALL THE VALUES IN SET ARE UNIQUE
+
+    // eslint-disable-next-line
+    addons.map((el) => {
+      //MAP OVER 'ADDONS' TO GET ALL GROUPS WITH REQUIRED
+      if (el.required) {
+        requiredGroups.push(el.name.split(" ").join(""));
+      }
+    });
+
+    let checker = requiredGroups.every((v) => unique.includes(v));
+
+    return addedGroups.length === 0 ? false : checker;
   };
 
   //FUNCTION TO GET TOTAL ADDITIONAL COST

@@ -1,4 +1,4 @@
-##Folder Structure
+## Folder Structure
 
 swiggy-customization-menu/
 ├─ node_modules/

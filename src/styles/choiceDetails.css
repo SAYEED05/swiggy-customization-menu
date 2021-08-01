@@ -87,4 +87,11 @@
   .show-error {
     bottom: 80px;
   }
+  .addon-option-cost {
+    padding-left: 8px;
+  }
+  .addon-option-wrapper input[type="radio"],
+  .addon-option-wrapper input[type="checkbox"] {
+    margin-right: 12px;
+  }
 }

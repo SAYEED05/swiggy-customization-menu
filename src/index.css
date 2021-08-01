@@ -26,7 +26,7 @@ html,
 body {
   font-family: "Proxima Nova Font", sans-serif;
   background-color: black;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 @keyframes introAnim {

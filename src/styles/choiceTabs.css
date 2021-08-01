@@ -32,3 +32,13 @@
   color: #282c3f;
   /*   border-bottom: 1px solid #282c3f; */
 }
+
+@media (max-width: 480px) {
+  .choice-tabs-wrapper {
+    padding: 13px 0 10px 50px;
+  }
+
+  .choice {
+    padding: 5px 0;
+  }
+}

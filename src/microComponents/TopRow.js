@@ -12,7 +12,7 @@ const TopRow = ({ shortDetails }) => {
           </div>
           <div className="action-close">
             <button className="close-button">
-              <img className="close-icon" src={closeIcon} alt="" />
+              {/* <img className="close-icon" src={closeIcon} alt="" /> */}
             </button>
           </div>
         </div>
