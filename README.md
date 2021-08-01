@@ -18,11 +18,13 @@ swiggy-customization-menu/
 │ │ ├─ Category.js
 │ │ ├─ ChoiceDetails.js
 │ │ ├─ ChoiceTabs.js
+│ │ ├─ preview.js
 │ │ ├─ Summary.js
 │ │ ├─ TopRow.js
 │ ├─ styles/
 │ │ ├─ choiceDetails.css
 │ │ ├─ choiceTabs.css
+│ │ ├─ preview.css
 │ │ ├─ summary.css
 │ │ ├─ topRow.css
 │ ├─ App.js
@@ -30,9 +32,9 @@ swiggy-customization-menu/
 │ ├─ index.js
 │ ├─ sampleData.js
 ├─ .gitignore
+├─ package-lock.json
 ├─ package.json
 ├─ README.md
-package-lock.json
 
 ## To Run on Local Machine
 
