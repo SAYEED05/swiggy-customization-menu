@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Summary from "./Summary";
 import Category from "./Category";
-/* import Result from "./Result"; */
 import "../styles/choiceDetails.css";
 
 const ChoicesDetails = ({ addons, shortDetails }) => {
@@ -142,7 +141,7 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
                   >
                     <Category option={option.isVeg} />
                     <div className="addon-option">
-                      <label>
+                      <label className="input-label">
                         <input
                           type={addon.multipleSelect ? `checkbox` : "radio"}
                           className="addon-input"
@@ -184,7 +183,6 @@ const ChoicesDetails = ({ addons, shortDetails }) => {
         shortDetails={shortDetails}
         checkerFunction={reqiredAddonsCheck}
       />
-      {/* <Result /> */}
     </>
   );
 };

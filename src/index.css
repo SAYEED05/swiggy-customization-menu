@@ -11,14 +11,15 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-}
 
-input,
-textarea,
-button,
-select,
-a {
-  -webkit-tap-highlight-color: transparent !important;
+  /* DISABLE TEXT SELECTION */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
 }
 
 /* SETTING GLOBAL FONT */
@@ -26,7 +27,7 @@ html,
 body {
   font-family: "Proxima Nova Font", sans-serif;
   background-color: black;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @keyframes introAnim {
@@ -61,5 +62,6 @@ body {
 @media (max-width: 480px) {
   .customize-menu-wrapper {
     width: 90vw;
+    animation: none;
   }
 }

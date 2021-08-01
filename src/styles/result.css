@@ -36,7 +36,8 @@
   align-items: center;
   justify-content: center;
   padding-top: 26px;
-  height: 228px;
+  height: 250px;
+  overflow-y: scroll;
 }
 
 .result-details,
@@ -47,8 +48,8 @@
   justify-content: space-between;
   padding-bottom: 12px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
 }
 
 .result-addon-price,
@@ -62,6 +63,7 @@
 
 .result-cta {
   text-align: center;
+  margin-top: 10px;
 }
 
 button {
@@ -72,4 +74,10 @@ button {
   height: 32px;
   background: #60b246;
   color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .selected-details-wrapper {
+    height: 320px;
+  }
 }
