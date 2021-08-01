@@ -35,7 +35,7 @@ body {
   /* overflow: hidden; */
 }
 
-@keyframes introAnim {
+/* @keyframes introAnim {
   from {
     top: 140%;
     opacity: 0;
@@ -44,7 +44,7 @@ body {
     top: 50%;
     opacity: 1;
   }
-}
+} */
 
 /* CUSTOMIZE MENU STYLING */
 .customize-menu-wrapper {
